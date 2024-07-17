@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.26.1",
+    "@google-cloud/local-auth": "2.1.0",
     "@hello-pangea/dnd": "^16.3.0",
     "@hookform/resolvers": "^3.3.2",
     "@mux/mux-node": "^7.3.2",
@@ -38,8 +39,10 @@
     "cmdk": "^0.2.0",
     "eslint": "8.52.0",
     "eslint-config-next": "13.4.12",
+    "googleapis": "105",
     "lucide-react": "^0.290.0",
     "next": "^14.2.3",
+    "pg": "^8.12.0",
     "postcss": "8.4.31",
     "query-string": "^8.1.0",
     "react": "18.2.0",
