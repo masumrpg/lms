@@ -10,6 +10,7 @@ import { VideoPlayer } from "./_components/video-player";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
+import ReactVideoPlayer from "./_components/react-player";
 
 const ChapterIdPage = async ({
   params,
@@ -56,7 +57,7 @@ const ChapterIdPage = async ({
       )}
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
         <div className="p-4">
-          <VideoPlayer
+          {/* <VideoPlayer
             chapterId={params.chapterId}
             title={chapter.title}
             courseId={params.courseId}
@@ -64,6 +65,14 @@ const ChapterIdPage = async ({
             playbackId={muxData?.playbackId!}
             isLocked={isLocked}
             completeOnEnd={completeOnEnd}
+          /> */}
+          <ReactVideoPlayer
+            playbackId={""}
+            courseId={""}
+            chapterId={""}
+            isLocked={false}
+            completeOnEnd={false}
+            title={"Ok"}
           />
         </div>
         <div>

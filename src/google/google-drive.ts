@@ -5,6 +5,7 @@ import fs from "fs";
 import { google, drive_v3 } from "googleapis";
 import { OAuth2Client } from "google-auth-library";
 import { googleConstant } from "@/constant/google";
+import { PassThrough } from "stream";
 
 /**
  * Get or create folder in Google Drive.
@@ -132,6 +133,37 @@ export async function listFilesInFolder(
   }
 }
 
+/**
+ * Stream a file from Google Drive.
+ * @param {OAuth2Client} authClient An authorized OAuth2 client.
+ * @param {string} fileId The ID of the file to stream.
+ * @return {Promise<PassThrough>} A promise that resolves to a stream of the file.
+ */
+export async function streamFile(authClient: OAuth2Client, fileId: string): Promise<PassThrough> {
+  const drive = google.drive({ version: "v3", auth: authClient });
+  const stream = new PassThrough();
+
+  try {
+    await drive.files.get(
+      { fileId: fileId, alt: "media" },
+      { responseType: "stream" },
+      (err:any, res:any) => {
+        if (err) {
+          console.error("Error streaming file:", err);
+          stream.emit("error", err);
+          return;
+        }
+        res?.data.pipe(stream);
+      }
+    );
+  } catch (error) {
+    console.error("Error streaming file:", error);
+    stream.emit("error", error);
+  }
+
+  return stream;
+}
+
 // authorize()
 //   .then((authClient) => {
 //     // Replace this with the path to the file you want to upload
@@ -141,14 +173,14 @@ export async function listFilesInFolder(
 //   .catch(console.error);
 
 // Example usage:
-// authorize()
-//   .then((authClient) => {
-//     return listFilesInFolder(authClient, "LMS");
-//   })
-//   .then((files) => {
-//     console.log("Files:", JSON.stringify(files, null, 2));
-//   })
-//   .catch(console.error);
+authorize()
+  .then((authClient) => {
+    return listFilesInFolder(authClient, "LMS");
+  })
+  .then((files) => {
+    console.log("Files:", JSON.stringify(files, null, 2));
+  })
+  .catch(console.error);
 
 // const authClient = await authorize();
 // const data = await listFilesInFolder(authClient, googleConstant.driveFolder);
