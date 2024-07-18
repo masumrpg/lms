@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { google, drive_v3 } from "googleapis";
 import { OAuth2Client } from "google-auth-library";
+import { googleConstant } from "@/constant/google";
 
 /**
  * Get or create folder in Google Drive.
@@ -11,7 +12,7 @@ import { OAuth2Client } from "google-auth-library";
  * @param {string} folderName The name of the folder to search or create.
  * @return {Promise<any>} The folder ID.
  */
-export async function getOrCreateFolder(authClient: any, folderName: string) {
+export async function getOrCreateFolder(authClient: OAuth2Client, folderName: string) {
   const drive = google.drive({ version: "v3", auth: authClient });
   const res = await drive.files.list({
     q: `mimeType='application/vnd.google-apps.folder' and name='${folderName}'`,
@@ -58,7 +59,7 @@ export async function checkIfFileExists(
  */
 export async function uploadFile(authClient: OAuth2Client, filePath: string) {
   const drive = google.drive({ version: "v3", auth: authClient });
-  const folderName = "LMS";
+  const folderName = googleConstant.driveFolder;
   const folder = await getOrCreateFolder(authClient, folderName);
 
   const fileName = path.basename(filePath);
@@ -121,7 +122,7 @@ export async function listFilesInFolder(
 
   const res = await drive.files.list({
     q: `'${folder.id}' in parents and trashed=false`,
-    fields: "files(id, name)",
+    fields: "files(id, name, mimeType, modifiedTime)",
   });
 
   if (res.data.files?.length) {

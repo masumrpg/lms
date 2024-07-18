@@ -40,7 +40,7 @@ export async function loadSavedCredentialsIfExist() {
  * @param {OAuth2Client} client
  * @return {Promise<void>}
  */
-export async function saveCredentials(client: any) {
+export async function saveCredentials(client: OAuth2Client) {
   const payload = {
     type: "authorized_user",
     client_id: process.env.CLIENT_ID,

@@ -10,6 +10,7 @@ async function main() {
         { name: "Fitness" },
         { name: "Photography" },
         { name: "Accounting" },
+        { name: "Education" },
         { name: "Engineering" },
         { name: "Filming" },
       ],
@@ -17,6 +18,8 @@ async function main() {
     console.log("Success");
   } catch (error) {
     console.log("Error seeding the database categories", error);
+    await database.$disconnect();
+  } finally {
     await database.$disconnect();
   }
 }
