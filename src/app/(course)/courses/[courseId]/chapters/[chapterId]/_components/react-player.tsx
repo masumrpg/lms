@@ -79,7 +79,7 @@ export default function ReactVideoPlayer({
           playing={true}
           pip={false}
           controls={true}
-          controlsList='nodownload' // Menonaktifkan tombol download
+          controlsList={"nodownload"} // Menonaktifkan tombol download
           onPause={onPaused}
           onEnded={onEnd}
           onReady={() => setIsReady(true)}
