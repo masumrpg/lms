@@ -1,6 +1,5 @@
 "use client";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
-import { cn } from "@/lib/utils";
 import axios from "axios";
 import { Loader2, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -16,6 +15,7 @@ interface VideoPlayerProps {
   isLocked: boolean;
   completeOnEnd: boolean;
   title: string;
+  link?: string;
 }
 
 export default function ReactVideoPlayer({
@@ -26,6 +26,7 @@ export default function ReactVideoPlayer({
   isLocked,
   completeOnEnd,
   title,
+  link
 }: VideoPlayerProps) {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
@@ -57,10 +58,6 @@ export default function ReactVideoPlayer({
     }
   };
 
-  const onPaused = () => {
-    toast.error("Paused");
-  };
-
   return (
     <div className="relative aspect-video">
       {!isReady && !isLocked && (
@@ -77,20 +74,17 @@ export default function ReactVideoPlayer({
       {!isLocked && (
         <ReactPlayer
           playing={false}
-          pip={false}
           controls={true}
-          controlsList={"nodownload"} // Menonaktifkan tombol download
-          onPause={onPaused}
-          onEnded={onEnd}
           onReady={() => setIsReady(true)}
-          config={{
-            file: {
-              forceVideo: true,
-            },
-          }}
+          onEnded={onEnd}
           width={"100%"}
           height={"100%"}
-          url="http://googledrive-api-production.up.railway.app/stream/1Hg8d12F-5qBaEwg1f4-XJIsHHLm-iiZk"
+          url={link}
+          config={{
+            youtube: {
+              playerVars: { showinfo: 0, autoplay: 1 }
+            }
+          }}
         />
       )}
     </div>

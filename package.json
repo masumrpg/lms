@@ -62,6 +62,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "uploadthing": "^5.7.3",
+    "ytdl-core": "^4.11.5",
     "zod": "^3.22.4",
     "zustand": "^4.4.6"
   },
