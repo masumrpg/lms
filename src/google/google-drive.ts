@@ -173,14 +173,14 @@ export async function streamFile(authClient: OAuth2Client, fileId: string): Prom
 //   .catch(console.error);
 
 // Example usage:
-authorize()
-  .then((authClient) => {
-    return listFilesInFolder(authClient, "LMS");
-  })
-  .then((files) => {
-    console.log("Files:", JSON.stringify(files, null, 2));
-  })
-  .catch(console.error);
+// authorize()
+//   .then((authClient) => {
+//     return listFilesInFolder(authClient, "LMS");
+//   })
+//   .then((files) => {
+//     console.log("Files:", JSON.stringify(files, null, 2));
+//   })
+//   .catch(console.error);
 
 // const authClient = await authorize();
 // const data = await listFilesInFolder(authClient, googleConstant.driveFolder);

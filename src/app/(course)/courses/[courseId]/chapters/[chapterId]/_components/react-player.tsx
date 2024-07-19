@@ -76,7 +76,7 @@ export default function ReactVideoPlayer({
       )}
       {!isLocked && (
         <ReactPlayer
-          playing={true}
+          playing={false}
           pip={false}
           controls={true}
           controlsList={"nodownload"} // Menonaktifkan tombol download
@@ -90,7 +90,7 @@ export default function ReactVideoPlayer({
           }}
           width={"100%"}
           height={"100%"}
-          url="/api/stream/1Hg8d12F-5qBaEwg1f4-XJIsHHLm-iiZk"
+          url="http://googledrive-api-production.up.railway.app/stream/1Hg8d12F-5qBaEwg1f4-XJIsHHLm-iiZk"
         />
       )}
     </div>
