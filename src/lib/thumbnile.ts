@@ -8,7 +8,7 @@ export async function getThumbnailURL(videoURL: string): Promise<string> {
         const thumbnails = info.videoDetails.thumbnails;
         const highestQualityThumbnail = thumbnails[thumbnails.length - 1].url;
         return highestQualityThumbnail;
-    } catch (error) {
+    } catch (error:any) {
         throw new Error(`Failed to get thumbnail: ${error.message}`);
     }
 }
