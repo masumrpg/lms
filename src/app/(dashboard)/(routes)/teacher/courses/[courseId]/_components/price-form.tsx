@@ -81,6 +81,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             !initialData.price && "text-slate-500 italic"
           )}
         >
+          {/* TODO Rubah jadi Rupiah */}
           {initialData.price ? formatPrice(initialData.price) : "No price"}
         </p>
       )}

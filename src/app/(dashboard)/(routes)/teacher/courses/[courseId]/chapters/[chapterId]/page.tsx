@@ -27,10 +27,11 @@ const ChapterIdPage = async ({
       id: params.chapterId,
       courseId: params.courseId,
     },
-    // include: {
-    //   course: true,
-    // },
+    include: {
+      course: true,
+    },
   });
+
 
   if (!chapter) {
     return redirect("/");

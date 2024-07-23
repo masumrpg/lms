@@ -51,6 +51,7 @@ const CourseCard = ({
             />
           ) : (
             <p className="text-md md:text-sm font-medium text-slate-700">
+              {/* TODO Rubah jadi rupiah */}
               {formatPrice(price)}
             </p>
           )}

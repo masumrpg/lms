@@ -15,6 +15,7 @@ export const DataCard = ({ value, label, shouldFormat }: DataCardProps) => {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">
+          {/* TODO Rubah jadi rupiah */}
           {shouldFormat ? formatPrice(value) : value}
         </div>
       </CardContent>

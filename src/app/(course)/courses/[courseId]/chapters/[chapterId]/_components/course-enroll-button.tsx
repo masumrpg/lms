@@ -36,6 +36,7 @@ export const CourseEnrollButton = ({
       className="w-full md:w-auto"
       size="sm"
     >
+      {/* TODO Rubah jadi rupiah */}
       Enroll for {formatPrice(price)}
     </Button>
   );

@@ -8,7 +8,7 @@ import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Chapter } from "@prisma/client";
+import { Chapter, Course } from "@prisma/client";
 import ReactPlayer from "react-player";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 
 
 interface ChapterVideoProps {
-  initialData: Chapter;
+  initialData: Chapter & {course: Course;};
   courseId: string;
   chapterId: string;
 }
@@ -47,7 +47,7 @@ const formSchema = z.object({
 export const ChapterVideoForm = ({
   initialData,
   courseId,
-  chapterId,
+  chapterId
 }: ChapterVideoProps) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
@@ -66,9 +66,10 @@ export const ChapterVideoForm = ({
 
   const { isSubmitting, isValid } = form.formState;
 
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      if (initialData.position === 1) {
+      if (!initialData.course.imageUrl && initialData.position === 1) {
         const response: ThumbnailProps = await axios.get(`/api/thumbnail`, {
           params: {
             videoURL: values.videoUrl
