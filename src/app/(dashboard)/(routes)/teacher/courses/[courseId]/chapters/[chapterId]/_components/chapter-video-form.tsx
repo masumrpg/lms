@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import MuxPlayer from "@mux/mux-player-react";
 import { Pencil, PlusCircle, Video } from "lucide-react";
 import toast from "react-hot-toast";
 import * as z from "zod";
@@ -9,8 +8,7 @@ import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Chapter, MuxData } from "@prisma/client";
-import { FileUpload } from "@/components/file-upload";
+import { Chapter } from "@prisma/client";
 import ReactPlayer from "react-player";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,8 +34,14 @@ interface ThumbnailProps {
   }
 }
 
+
+// Regex pattern for YouTube URL validation
+const youtubeUrlPattern = /^https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+$/;
+
 const formSchema = z.object({
-  videoUrl: z.string().min(1),
+  videoUrl: z.string().min(1).regex(youtubeUrlPattern, {
+    message: "Invalid YouTube URL format",
+  }),
 });
 
 export const ChapterVideoForm = ({
@@ -118,7 +122,6 @@ export const ChapterVideoForm = ({
           </div>
         ) : (
           <div className="relative aspect-video mt-2 rounded-md overflow-hidden">
-            {/* <MuxPlayer playbackId={initialData?.muxData?.playbackId || ""} /> */}
             <ReactPlayer
               url={initialData.videoUrl || ""}
               controls={true}
@@ -127,21 +130,6 @@ export const ChapterVideoForm = ({
             />
           </div>
         ))}
-      {/* {isEditing && (
-        <div>
-          <FileUpload
-            endpoint="chapterVideo"
-            onChange={(url) => {
-              if (url) {
-                onSubmit({ videoUrl: url });
-              }
-            }}
-          />
-          <div className="text-xs text-muted-foreground mt-4">
-            Upload this chapter&apos;s video
-          </div>
-        </div>
-      )} */}
       {isEditing && (
         <div>
           <Form {...form}>
