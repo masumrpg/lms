@@ -10,7 +10,6 @@ import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
 import ReactVideoPlayer from "./_components/react-player";
-import { VideoPlayer } from "./_components/video-player";
 
 const ChapterIdPage = async ({
   params,
@@ -57,15 +56,6 @@ const ChapterIdPage = async ({
       )}
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
         <div className="p-4">
-          {/* <VideoPlayer
-            chapterId={params.chapterId}
-            title={chapter.title}
-            courseId={params.courseId}
-            nextChapterId={nextChapter?.id}
-            playbackId={muxData?.playbackId!}
-            isLocked={isLocked}
-            completeOnEnd={completeOnEnd}
-          /> */}
           <ReactVideoPlayer
             chapterId={params.chapterId}
             title={chapter.title}
@@ -74,7 +64,7 @@ const ChapterIdPage = async ({
             playbackId={muxData?.playbackId!}
             isLocked={isLocked}
             completeOnEnd={completeOnEnd}
-            link={"https://www.youtube.com/watch?v=LXb3EKWsInQ"}
+            link={chapter.videoUrl!}
           />
         </div>
         <div>

@@ -10,11 +10,11 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Course } from "@prisma/client";
+import { Course, Chapter } from "@prisma/client";
 import { FileUpload } from "@/components/file-upload";
 
 interface ImageFormProps {
-  initialData: Course;
+  initialData: Course
   courseId: string;
 }
 

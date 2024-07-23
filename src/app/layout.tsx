@@ -5,6 +5,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ToastProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 
+export const revalidate = 0;
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

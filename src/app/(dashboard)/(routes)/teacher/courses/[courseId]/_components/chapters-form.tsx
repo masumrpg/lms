@@ -86,7 +86,9 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
-        Course Chapters
+        <div>
+        Course Chapters<span className="text-red-500">*</span>
+        </div>
         <Button variant="ghost" onClick={toggleCreating}>
           {isCreating ? (
             <>Cancel</>

@@ -29,6 +29,8 @@ interface TitleFormProps {
 const formSchema = z.object({
   title: z.string().min(1, {
     message: "Title is required",
+  }).max(29, {
+    message: "Max 29 charachter"
   }),
 });
 
@@ -59,7 +61,9 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course title
+        <div>
+          Course Title<span className="text-red-500">*</span>
+        </div>
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing ? (
             <>Cancel</>

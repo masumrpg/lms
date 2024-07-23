@@ -9,6 +9,7 @@ import {
   FcOldTimeCamera,
   FcReading,
   FcSalesPerformance,
+  FcSmartphoneTablet,
   FcSportsMode,
 } from "react-icons/fc";
 
@@ -20,14 +21,15 @@ interface CategoriesProps {
 }
 
 const iconMap: Record<Category["name"], IconType> = {
-  Music: FcMusic,
-  Photography: FcOldTimeCamera,
-  Fitness: FcSportsMode,
-  Accounting: FcSalesPerformance,
-  "Computer Science": FcMultipleDevices,
-  Filming: FcFilmReel,
-  Engineering: FcEngineering,
   Education: FcReading,
+  "Sofware Development": FcSmartphoneTablet,
+  // Music: FcMusic,
+  // Photography: FcOldTimeCamera,
+  // Fitness: FcSportsMode,
+  // Accounting: FcSalesPerformance,
+  // "Computer Science": FcMultipleDevices,
+  // Filming: FcFilmReel,
+  // Engineering: FcEngineering,
 };
 
 const Categories = ({ items }: CategoriesProps) => {
